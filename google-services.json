@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "381274570762",
+    "project_id": "eo-apps-f5373",
+    "storage_bucket": "eo-apps-f5373.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381274570762:android:b714f3e01298ad8d5c9ff3",
+        "android_client_info": {
+          "package_name": "user.eateries.online"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381274570762-pt8nvbsq62in5kjqqmqvlrfk16pr1sr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnkaTg8RYJ2isc50ijdMRrX_frUo6z6zw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381274570762-pt8nvbsq62in5kjqqmqvlrfk16pr1sr0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "381274570762-hgdegq30gl2tsd5r9nu72ma86ht25287.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "user.eateries.online"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
