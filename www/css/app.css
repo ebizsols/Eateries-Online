@@ -3143,3 +3143,7 @@ text-decoration:line-through;
 .sale-price{
 padding-left: 10px;
 }
+
+.list-item--bottom_gap{
+margin-bottom:60px;
+}

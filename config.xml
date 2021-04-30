@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="user.eateries.online" versionCode="31" version="3.1.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0"
+ xmlns:android="http://schemas.android.com/apk/res/android" id="user.eateries.online" versionCode="1.5.9" version="1.5.9">
   <name>Eateries Online App</name>
   <description>
         Multi-outlet Eateries Online App
     </description>
-  <author email="eateries.online@gmail.com" href="http://eateries.online">
+  <author email="eateries.online@gmail.com" 
+  href="http://eateries.online">
         eateries.online
     </author>
   <content src="index.html"/>
+  <preference name="orientation" value="portrait"/>
+  <preference name="SplashScreenDelay" value="0"/>
+  <preference name="fullscreen" value="false"/>
   <preference name="AndroidXEnabled" value="true"/>
   <preference name="android-minSdkVersion" value="22"/>
   <preference name="android-targetSdkVersion" value="29"/>
+  <preference name="KeepRunning" value="true"/>
   <allow-navigation href="*"/>
   <allow-intent href="itms:*"/>
   <allow-intent href="itms-apps:*"/>
@@ -19,12 +25,13 @@
     <application android:theme="@android:style/Theme.NoTitleBar">
         </application>
   </gap:config-file>
+      
   <platform name="android">
     <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
       <application android:usesCleartextTraffic="true"/>
     </edit-config>
     <config-file target="AndroidManifest.xml" parent="/*/application">
-      <uses-library android:name="org.apache.http.legacy" android:required="true"/>
+        <uses-library android:name="org.apache.http.legacy" android:required="true"/>
     </config-file>
     <resource-file src="www/beep.wav" target="app/src/main/res/raw/beep.wav"/>
     <resource-file src="google-services.json" target="google-services.json"/>
@@ -47,16 +54,24 @@
     <splash density="port-xhdpi" src="res/screens/android/drawable-port-xhdpi-screen.png"/>
     <splash density="port-xxhdpi" src="res/screens/android/drawable-port-xxhdpi-screen.png"/>
     <splash density="port-xxxhdpi" src="res/screens/android/drawable-port-xxxhdpi-screen.png"/>
-    <preference name="AndroidXEnabled" value="true"/>
   </platform>
   <platform name="ios">
     <allow-intent href="tel:*"/>
-    <allow-navigation href="tel:*"/>
+    <allow-navigation href="tel:*" />
+    
     <allow-intent href="mailto:*"/>
-    <allow-navigation href="mailto:*"/>
+    <allow-navigation href="mailto:*" />
+    
     <resource-file src="www/beep.wav"/>
+     <preference name="WKWebViewOnly" value="true"/>
+    <feature name="CDVWKWebViewEngine">
+      <param name="ios-package" value="CDVWKWebViewEngine"/>
+    </feature>
+    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine"/>
+    
     <preference name="scheme" value="monaca-app"/>
     <preference name="hostname" value="localhost"/>
+    
     <icon height="20" platform="ios" src="res/icons/ios/icon-20.png" width="20"/>
     <icon height="57" platform="ios" src="res/icons/ios/icon.png" width="57"/>
     <icon height="114" platform="ios" src="res/icons/ios/icon@2x.png" width="114"/>
@@ -75,75 +90,73 @@
     <icon height="58" platform="ios" src="res/icons/ios/icon-small@2x.png" width="58"/>
     <icon height="87" platform="ios" src="res/icons/ios/icon-small@3x.png" width="87"/>
     <icon height="1024" platform="ios" src="res/icons/ios/icon-1024.png" width="1024"/>
-    <icon height="167" platform="ios" src="res/icons/ios/icon-83.5@2x.png" width="167"/>
+    <icon height="167" platform="ios" src="res/icons/ios/icon-83.5@2x.png" width="167"/>    
+    
     <splash src="res/screens/ios/Default@2x~universal~anyany.png"/>
-    <splash src="res/screens/ios/Default~iphone.png" width="320" height="480"/>
-    <splash src="res/screens/ios/Default@2x~iphone.png" width="640" height="960"/>
-    <splash src="res/screens/ios/Default-568h@2x~iphone.png" width="640" height="1136"/>
-    <splash src="res/screens/ios/Default-667h.png" width="750" height="1334"/>
-    <splash src="res/screens/ios/Default-736h.png" width="1242" height="2208"/>
-    <splash src="res/screens/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
-    <splash src="res/screens/ios/Default-Portrait~ipad.png" width="768" height="1024"/>
-    <splash src="res/screens/ios/Default-Landscape~ipad.png" width="1024" height="768"/>
-    <splash src="res/screens/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
-    <splash src="res/screens/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
-    <config-file platform="ios" target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
-      <string>This allows us to use your location to provide you a nearby restaurant, and to facilitate more accurately, keeping you in the loop about Eateries Online.</string>
-    </config-file>
-    <config-file platform="ios" target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
-      <string>This allows us to use your location to provide you a nearby restaurant, and to facilitate more accurately, keeping you in the loop about Eateries Online.</string>
-    </config-file>
-    <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
-      <string>Enable Eateries Online to access your camera to take photos of you and to save as profile picture.</string>
-    </edit-config>
-    <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
-      <string>Enable Eateries Online to access your photo library to get pictures from there.</string>
-    </edit-config>
-    <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
-      <string>This allows us to use your location to find restaurant nearby.</string>
-    </edit-config>
-    <edit-config target="NSLocationAlwaysAndWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
-      <string>This allows us to use your location to provide you a nearby restaurant, and to facilitate more accurately, keeping you in the loop about Eateries Online.</string>
-    </edit-config>
-    <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
-      <string>This allows us to use your location to find restaurant nearby.</string>
-    </edit-config>
-    <edit-config target="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
-      <string>Enable Eateries Online to access your photo library to save pictures there.</string>
-    </edit-config>
-    <edit-config target="NSMicrophoneUsageDescription" file="*-Info.plist" mode="merge">
-      <string>need microphone access to record sounds</string>
-    </edit-config>
-    <edit-config target="NSBluetoothAlwaysUsageDescription" file="*-Info.plist" mode="merge">
-      <string>Improve location accuracy when finding nearby restaurant</string>
-    </edit-config>
-    <edit-config target="NSBluetoothPeripheralUsageDescription" file="*-Info.plist" mode="merge">
-      <string>Improve location accuracy when finding nearby restaurant</string>
-    </edit-config>
-    <edit-config target="NSContactsUsageDescription" file="*-Info.plist" mode="merge">
-      <string>Need access to your contacts</string>
-    </edit-config>
-    <edit-config target="NSCalendarsUsageDescription" file="*-Info.plist" mode="merge">
-      <string>Need acces to calendar</string>
-    </edit-config>
-    <edit-config target="NSMotionUsageDescription" file="*-Info.plist" mode="merge">
-      <string>Improve location accuracy when finding nearby restaurant</string>
-    </edit-config>
+	<splash src="res/screens/ios/Default~iphone.png" width="320" height="480"/>
+	<splash src="res/screens/ios/Default@2x~iphone.png" width="640" height="960"/>
+	<splash src="res/screens/ios/Default-568h@2x~iphone.png" width="640" height="1136"/>
+	<splash src="res/screens/ios/Default-667h.png" width="750" height="1334"/>
+	<splash src="res/screens/ios/Default-736h.png" width="1242" height="2208"/>
+	<splash src="res/screens/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
+	<splash src="res/screens/ios/Default-Portrait~ipad.png" width="768" height="1024"/>
+	<splash src="res/screens/ios/Default-Landscape~ipad.png" width="1024" height="768"/>
+	<splash src="res/screens/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+	<splash src="res/screens/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
+	        
+	<config-file platform="ios" target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+	  <string>This allows us to use your location to provide you a nearby restaurant, and to facilitate more accurately, keeping you in the loop about Eateries Online.</string>
+	</config-file>
+	<config-file platform="ios" target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+	  <string>This allows us to use your location to provide you a nearby restaurant, and to facilitate more accurately, keeping you in the loop about Eateries Online.</string>
+	</config-file>	
+		
+	<edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+	<string>Enable Eateries Online to access your camera to take photos of you and to save as profile picture.</string>
+	</edit-config>
+	<edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
+	<string>Enable Eateries Online to access your photo library to get pictures from there.</string>
+	</edit-config>
+	<edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+	<string>This allows us to use your location to find restaurant nearby.</string>
+	</edit-config>
+	<edit-config target="NSLocationAlwaysAndWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+	<string>This allows us to use your location to provide you a nearby restaurant, and to facilitate more accurately, keeping you in the loop about Eateries Online.</string>
+	</edit-config>
+	<edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
+	<string>This allows us to use your location to find restaurant nearby.</string>
+	</edit-config>
+	<edit-config target="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
+	<string>Enable Eateries Online to access your photo library to save pictures there.</string>
+	</edit-config>
+	<edit-config target="NSMicrophoneUsageDescription" file="*-Info.plist" mode="merge">
+	<string>need microphone access to record sounds</string>
+	</edit-config>
+	<edit-config target="NSBluetoothAlwaysUsageDescription" file="*-Info.plist" mode="merge">
+	<string>Improve location accuracy when finding nearby restaurant</string>
+	</edit-config>
+	<edit-config target="NSBluetoothPeripheralUsageDescription" file="*-Info.plist" mode="merge">
+	<string>Improve location accuracy when finding nearby restaurant</string>
+	</edit-config>
+	<edit-config target="NSContactsUsageDescription" file="*-Info.plist" mode="merge">
+	<string>Need access to your contacts</string>
+	</edit-config>
+	<edit-config target="NSCalendarsUsageDescription" file="*-Info.plist" mode="merge">
+	<string>Need acces to calendar</string>
+	</edit-config>
+	<edit-config target="NSMotionUsageDescription" file="*-Info.plist" mode="merge">
+	<string>Improve location accuracy when finding nearby restaurant</string>
+	</edit-config>
+    
   </platform>
   <preference name="WindowsStorePublisherName" value="My Name"/>
   <preference name="WindowsStoreIdentityName" value="784321d4-bab8-3957-d0a2-426559520ecc"/>
   <preference name="ios-XCBuildConfiguration-TARGETED_DEVICE_FAMILY" value="1"/>
-  <preference name="target-device" value="handset"/>
   <preference name="AutoHideSplashScreen" value="false"/>
   <preference name="FadeSplashScreen" value="false"/>
   <preference name="ShowSplashScreenSpinner" value="false"/>
-  <preference name="EnableViewportScale" value="false"/>
   <access origin="*"/>
-  <access origin="tel:*"/>
-  <preference name="KeepRunning" value="true"/>
-  <preference name="monaca:AndroidIsPackageNameSeparate" value="false"/>
+  <access origin="tel:*" launch-external="yes" />
   <preference name="DisallowOverscroll" value="true"/>
-  <preference name="Orientation" value="default"/>
-  <preference name="SplashScreenDelay" value="0"/>
-  <preference name="Fullscreen" value="false"/>
+  <preference name="EnableViewportScale" value="false"/>
 </widget>

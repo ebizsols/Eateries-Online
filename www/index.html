@@ -360,8 +360,8 @@
       
    <div class="dim_background">
    
-     <h2 class="app_title">Eateries Online</h2>
-     <p class="to_text_white trn">The preferred marketplace <br> of your local eateries</p>
+     <h2 class="app_title">KARENDERIA</h2>
+     <p class="to_text_white trn">Order food from local restaurant</p>
  
       
 	<ons-bottom-toolbar modifier="bottom_toolbar1">
@@ -5048,6 +5048,54 @@ placeholder="Search for restaurant,food and cuisine" ></ons-search-input>
 
 </ons-page>
 </template>
+
+<template id="guest_form.html">
+<ons-page id="guest_form" modifier="page_white is_rtl" >
+
+<ons-toolbar modifier="no_shadow" >
+  <div class="left">
+    <ons-back-button>Back</ons-back-button>
+  </div>
+  <div class="center trn">Guest information</div>  
+</ons-toolbar>
+
+<form id="frm_guest_form" class="frm_guest_form" method="POST">
+<div class="form_wrapper">
+<ons-list>       
+  <ons-list-item>
+	<div class="center">
+	<ons-input name="first_name" id="first_name" required modifier="transparent" placeholder="First Name" float ></ons-input>
+	</div>
+  </ons-list-item>
+  
+  <ons-list-item>
+	<div class="center">
+	<ons-input name="last_name" id="last_name" required modifier="transparent" placeholder="Last Name" float ></ons-input>
+	</div>
+  </ons-list-item>
+  
+  <ons-list-item>
+	<div class="center">
+	<ons-input type="email" name="email_address" id="email_address" modifier="transparent" placeholder="Email" float ></ons-input>
+	</div>
+  </ons-list-item>
+  <ons-list-item></ons-list-item>
+  
+</ons-list>   
+</div>
+</form>
+
+<div class="bottom_gap"></div>
+
+<ons-bottom-toolbar modifier="">	     	        	  
+  <ons-button modifier="large to_orange no_shadow" onclick="submitForm('.frm_guest_form','create_guest_information','POST')" >
+  <span class="trn">CONTINUE</span>
+  </ons-button>	  
+</ons-bottom-toolbar>
+
+</ons-page>
+</template>
+
 
 
 </body>

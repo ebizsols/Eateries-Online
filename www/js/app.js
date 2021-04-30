@@ -389,7 +389,7 @@ document.addEventListener('init', function(event) {
    	  break;
    	  
    	  case "tabbar":
-   	    tabbar_loaded = true;
+   	    tabbar_loaded = true;   	    
    	    $(".tabbar_wrap").html( tabbarMenu() );   	       	    
    	  break;
    	  
@@ -2963,12 +2963,19 @@ processAjax = function(action, data , method, loader_type){
 	        	  fillMobilePrefix(data.details.data);
 	        	break;
 	        	
-	        	case "customerLogin":	        
+	        	case "customerLogin":
+	        	case "create_guest_information":	        
 	        	
 	        	  setStorage('user_token', data.details.client_info.token );
 	        	  if ((typeof  data.details.client_info.contact_phone !== "undefined") && ( data.details.client_info.contact_phone !== null)) {
 	        	     setStorage('customer_number', data.details.client_info.contact_phone );
 	        	  }
+	        	  
+	        	  if ((typeof  data.details.client_info.is_guest !== "undefined") && ( data.details.client_info.is_guest !== null)) {
+	        	  	 setStorage('is_guest', data.details.client_info.is_guest );
+	        	  } else {
+	        	  	 removeStorage("is_guest"); 
+	        	  }     		
 	        	  
 	        	  next_step = getStorage("next_step");
 	        	  dump("next_step=>"+ next_step);
@@ -7591,7 +7598,7 @@ payNowNextStep = function(data){
 	  "total_amount" : data.details.total_amount ,
 	  'message': data.msg					  	  
 	};
-	 	 	
+	 	 			
 	switch (data.details.next_step){
 		
 		case "show_home_page":
@@ -7599,7 +7606,12 @@ payNowNextStep = function(data){
 		  break;
 		  
 		case "receipt":		
-		
+				  
+		  $is_guest = getStorage("is_guest");		  
+		  if($is_guest==1){
+		     removeStorage("user_token");
+		  }
+		  
 		  $graphical = isTrackingGraphical();
 		  
 		  /*AUTO SUBSCRIBE TO MERCHANT AFTER PURCHASE*/
@@ -8825,9 +8837,24 @@ enabledSocialLogin = function(){
 	   	  
 	   	  html+='</ons-list-item>';
 	   }
-	   
+	   	   	   	   
 	   var newItem = ons.createElement(html);
 	   list.appendChild(newItem);
+	   
+	   $guest_checkout_enabled = app_settings.guest_checkout_enabled;
+	   $next_step = getStorage("next_step");
+	   
+   	   if($next_step=="payment_option" && $guest_checkout_enabled==1){   	   	
+	   html ='';	   
+	   html+='<ons-list-item modifier="nodivider pad_right bottom_gap">';
+	   html+='<ons-button modifier="large to_orange no_shadow" style="width:100%;" onclick="showPage('+ q('guest_form.html') +');" >';
+       html+= t('CONTINUE AS GUEST'); 
+       html+='</ons-button>';		          
+	   html+='</ons-list-item>';
+	   var newItem = ons.createElement(html);
+	   list.appendChild(newItem);
+   	   }
+	   
 	   
 	} /*end if*/
 		
@@ -10501,6 +10528,7 @@ runAutoCarousel = function(data){
 StopAutoCarousel = function(){
     dump("StopAutoCarousel");
     if ((typeof  home_interval !== "undefined") && ( home_interval !== null)) {
+    	dump("StopAutoCarousel clearInterval");
     	clearInterval(home_interval);	  
     }	
 };
